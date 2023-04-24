@@ -25,12 +25,18 @@ namespace Ebay_Tests.PageObjects
         private IWebElement resultSearch;
         [FindsBy(How = How.CssSelector, Using = "[class=\"srp-controls__control srp-controls__count\"] h1 span:last-child")]
         private IList<IWebElement> resultsSearch;
+        [FindsBy(How = How.CssSelector, Using = "[class=\"srp-results srp-grid clearfix\"] [class=\"s-item__title\"]")]
+        private IWebElement resultSearchTwo;
+        [FindsBy(How = How.CssSelector, Using = "[class=\"srp-results srp-grid clearfix\"] [class=\"s-item__title\"]")]
+        private IList<IWebElement> resultsSearchTwo;
         [FindsBy(How = How.CssSelector, Using = "[class=\"srp-refine__category__list\"] [class=\"srp-refine__category__item\"] span")]
         private IWebElement chooseFilter;
         [FindsBy(How = How.CssSelector, Using = "ul [class=\"s-item s-item__pl-on-bottom\"]")]
         private IWebElement chooseItem;
         [FindsBy(How = How.CssSelector, Using = "[class=\"x-buybox-cta\"] li:nth-child(2)")]
         private IWebElement addToCartButton;
+        [FindsBy(How = How.CssSelector, Using = "[class=\"x-buybox-cta\"] li:nth-child(2)")]
+        private IWebElement addToCartButtonTwo;
         [FindsBy(How = How.CssSelector, Using = "[class=\"srp-controls__control srp-controls__count\"] h1")]
         private IWebElement checkSearch;
         [FindsBy(How = How.CssSelector, Using = "[class=\"srp-refine__category__item\"] span")]
@@ -72,16 +78,22 @@ namespace Ebay_Tests.PageObjects
         //Checking search option
         public String search(String wordSearch)
         {
-                searchBook.SendKeys(wordSearch);
-                seaerchBookButton.Click();
+            searchBook.SendKeys(wordSearch);
+            seaerchBookButton.Click();
+            try
+            {
                 WaitForElement(resultSearch);
-                //Over all the options found and checking that they correspond to the requested search
-                foreach (var item in resultsSearch)
-                {
-                    if (!item.Text.Contains(wordSearch))
-                        return "non";
-                }
-                return resultSearch.Text;
+            }catch(NoSuchElementException e) {
+                resultSearch = resultSearchTwo;
+            }
+
+            //Over all the options found and checking that they correspond to the requested search
+            foreach (var item in resultsSearch)
+            {
+                if (!item.Text.Contains(wordSearch))
+                    return "non";
+            }
+            return resultSearch.Text;
         }
         //checking filter option
         public Boolean filter()
@@ -107,9 +119,16 @@ namespace Ebay_Tests.PageObjects
             String _chooseItemName = chooseItem.Text.Substring(0, 30);
             //Update driver to new tub
             driver.SwitchTo().Window(driver.WindowHandles.Last());
-            WaitForElement(addToCartButton);
+            try
+            {
+                WaitForElement(addToCartButton);
+            }
+            catch (NoSuchElementException e)
+            {
+                addToCartButton = addToCartButtonTwo;
+            }
             addToCartButton.Click();
-            WaitForElement(addToCartIcon);
+            //WaitForElement(addToCartIcon);
             //The name of the item that went into the cart
             String _IteminCartName = ItemInCart.Text.Substring(0, 30);
             //Checking that the cart has been updated to one item and that the selected item is the same as the item in the cart
