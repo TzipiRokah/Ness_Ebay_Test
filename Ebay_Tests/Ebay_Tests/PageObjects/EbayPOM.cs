@@ -80,10 +80,12 @@ namespace Ebay_Tests.PageObjects
         {
             searchBook.SendKeys(wordSearch);
             seaerchBookButton.Click();
+            //Search by the first possible cssSelector
             try
             {
                 WaitForElement(resultSearch);
             }catch(NoSuchElementException e) {
+                //Changing CssSelector after first not found
                 resultSearch = resultSearchTwo;
             }
 
@@ -95,7 +97,7 @@ namespace Ebay_Tests.PageObjects
             }
             return resultSearch.Text;
         }
-        //checking filter option
+        //Checking filter option
         public Boolean filter()
         {
             WaitForElement(chooseFilter);
@@ -121,10 +123,12 @@ namespace Ebay_Tests.PageObjects
             driver.SwitchTo().Window(driver.WindowHandles.Last());
             try
             {
+                //Search by the first possible cssSelector
                 WaitForElement(addToCartButton);
             }
             catch (NoSuchElementException e)
             {
+                //Changing CssSelector after first not found
                 addToCartButton = addToCartButtonTwo;
             }
             addToCartButton.Click();
