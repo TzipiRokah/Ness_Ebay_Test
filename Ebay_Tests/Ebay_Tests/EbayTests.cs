@@ -30,21 +30,21 @@ namespace Ebay_Tests
         }
 
         [Test]
-        public void a_search()
+        public void test001_search()
         {
             String search = "Watch";
             Assert.AreEqual(ebayPom.search(search), search);
         }
 
         [Test]
-        public void b_filter()
+        public void test002_filter()
         {
             Assert.IsTrue(ebayPom.filter());
         }
 
         [Priority(2)]
         [Test]
-        public void c_addToCart()
+        public void test003_addToCart()
         {
             Assert.AreEqual(ebayPom.addToCart(),1);
         }
