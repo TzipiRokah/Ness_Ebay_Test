@@ -42,7 +42,6 @@ namespace Ebay_Tests
             Assert.IsTrue(ebayPom.filter());
         }
 
-        [Priority(2)]
         [Test]
         public void test003_addToCart()
         {
