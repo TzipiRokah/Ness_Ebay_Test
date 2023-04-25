@@ -131,8 +131,15 @@ namespace Ebay_Tests.PageObjects
                 //Changing CssSelector after first not found
                 addToCartButton = addToCartButtonTwo;
             }
-            addToCartButton.Click();
-            //WaitForElement(addToCartIcon);
+              try
+            {
+                addToCartButton.Click();
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            WaitForElement(addToCartIcon);
             //The name of the item that went into the cart
             String _IteminCartName = ItemInCart.Text.Substring(0, 30);
             //Checking that the cart has been updated to one item and that the selected item is the same as the item in the cart
