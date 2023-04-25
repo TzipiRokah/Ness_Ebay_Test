@@ -27,8 +27,6 @@ namespace Ebay_Tests.PageObjects
         private IList<IWebElement> resultsSearch;
         [FindsBy(How = How.CssSelector, Using = "[class=\"srp-results srp-grid clearfix\"] [class=\"s-item__title\"]")]
         private IWebElement resultSearchTwo;
-        [FindsBy(How = How.CssSelector, Using = "[class=\"srp-results srp-grid clearfix\"] [class=\"s-item__title\"]")]
-        private IList<IWebElement> resultsSearchTwo;
         [FindsBy(How = How.CssSelector, Using = "[class=\"srp-refine__category__list\"] [class=\"srp-refine__category__item\"] span")]
         private IWebElement chooseFilter;
         [FindsBy(How = How.CssSelector, Using = "ul [class=\"s-item s-item__pl-on-bottom\"]")]
@@ -37,16 +35,10 @@ namespace Ebay_Tests.PageObjects
         private IWebElement addToCartButton;
         [FindsBy(How = How.CssSelector, Using = "[class=\"x-buybox-cta\"] li:nth-child(2)")]
         private IWebElement addToCartButtonTwo;
-        [FindsBy(How = How.CssSelector, Using = "[class=\"srp-controls__control srp-controls__count\"] h1")]
-        private IWebElement checkSearch;
         [FindsBy(How = How.CssSelector, Using = "[class=\"srp-refine__category__item\"] span")]
         private IWebElement checkFilter;
         [FindsBy(How = How.CssSelector, Using = "[class=\"listsummary-content-itemdetails\"] h3")]
         private IWebElement ItemInCart;
-        [FindsBy(How = How.CssSelector, Using = "#x-msku__select-box-1000")]
-        private IWebElement selectButton;
-        [FindsBy(How = How.CssSelector, Using = "#x-msku__option-box-0")]
-        private IWebElement chooseSize;
         [FindsBy(How = How.CssSelector, Using = "#gh-cart-n")]
         private IWebElement addToCartIcon;
 
